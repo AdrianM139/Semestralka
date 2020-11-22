@@ -1,0 +1,15 @@
+body{
+    background-image: url("../img/les2.jpg");
+}
+
+.nadpis{
+    color: white;
+    font-family: "Segoe UI", serif;
+    text-align: center;
+    text-shadow: 9px 4px 5px #555;
+    font-size: 60px;
+    background-image: url("../img/zelen.png");
+    padding-bottom: 8px;
+    margin: 20px auto 10px auto;
+    cursor: default;
+}
