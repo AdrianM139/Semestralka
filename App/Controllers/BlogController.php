@@ -6,7 +6,6 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Models\Article;
-use App\Models\FileStorage;
 class BlogController extends AControllerBase
 {
 
@@ -45,8 +44,6 @@ class BlogController extends AControllerBase
     public function pridaj()
     {
         $article = new Article();
-        $article->setText("nový text");
-        $article->setTitle("nový názov");
 
         if (isset($_POST['title'])) {
             $article->setTitle($_POST['title']);

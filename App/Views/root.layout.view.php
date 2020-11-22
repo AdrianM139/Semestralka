@@ -28,8 +28,6 @@
         </nav>
 
 
-
-
     <div class="main">
     <body >
         <?= $contentHTML ?>

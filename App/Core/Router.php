@@ -24,7 +24,7 @@ class Router
      */
     public function getFullControllerName(): string
     {
-        $controllerName = empty(trim(@$_GET['c'])) ? "Home" : trim($_GET['c']);
+        $controllerName = empty(trim(@$_GET['c'])) ? "Blog" : trim($_GET['c']);
         return 'App\Controllers\\' . $controllerName . "Controller";
 
     }

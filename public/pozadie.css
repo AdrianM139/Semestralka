@@ -18,7 +18,7 @@ body{
 .main{
     background: rgba(255,255,255,0.85);
     padding: 10px 20px 50px;
-    margin: 10px 30px;
+    margin: 10px 155px;
 }
 
 .w3-animate-fading{animation:fading 8s infinite}
@@ -26,6 +26,7 @@ body{
 
 .mySlides{
     margin-top: 20px;
+    margin-bottom: 30px;
     max-width: 100%;
 }
 
@@ -67,4 +68,43 @@ body{
     padding: 5px 30px;
     margin: 0 16px;
     cursor: pointer;
+}
+
+.container{
+    margin-top: 30px;
+}
+
+.btn-success{
+    background-color: yellowgreen;
+}
+
+.btn-danger{
+    background-color: tomato;
+}
+
+@media screen and ( max-width: 1120px ) {
+    .main{
+        margin: 10px 80px;
+    }
+}
+
+@media screen and ( max-width: 920px ) {
+    .main{
+        margin: 10px;
+    }
+}
+
+@media screen and ( min-width: 768px ) {
+    .col-md-4 {
+        max-width: 30%;
+        background-color: rgba(255, 255, 255, 0.6);
+        margin: 10px;
+    }
+}
+
+@media screen and ( max-width: 768px ) {
+    .col-md-4 {
+        background-color: rgba(255, 255, 255, 0.6);
+        margin: 10px;
+    }
 }
