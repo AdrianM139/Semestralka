@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Models\Article;
-class BlogController extends AControllerBase
+class PrispevkyController extends AControllerBase
 {
 
     public function index()
@@ -15,12 +15,12 @@ class BlogController extends AControllerBase
             $id = $_GET['id'];
             $article = Article::getOne($id);
             $article->delete();
-            header("Location: ?c=blog");
+            header("Location: ?c=prispevky");
         }
 
-        return [
+        return $this->html([
             'articles' => Article::getAll()
-        ];
+        ]);
 
     }
 
@@ -33,12 +33,12 @@ class BlogController extends AControllerBase
             $article->setTitle($_POST['title']);
             $article->setText($_POST['text']);
             $article->Save();
-            header("Location: ?c=blog");
+            header("Location: ?c=prispevky");
         }
 
-        return[
-            'articles' => $article
-        ];
+        return $this->html([
+                'articles' => $article
+            ]);
     }
 
     public function pridaj()
@@ -49,12 +49,12 @@ class BlogController extends AControllerBase
             $article->setTitle($_POST['title']);
             $article->setText($_POST['text']);
             $article->Save();
-            header("Location: ?c=blog");
+            header("Location: ?c=prispevky");
         }
 
-        return[
-            'articles' => $article
-        ];
+        return $this->html([
+                'articles' => $article
+            ]);
     }
 
 
