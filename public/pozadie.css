@@ -18,7 +18,8 @@ body{
 .main{
     background: rgba(255,255,255,0.85);
     padding: 10px 20px 50px;
-    margin: 10px 155px;
+    max-width: 1200px;
+    margin: 10px auto;
 }
 
 .w3-animate-fading{animation:fading 8s infinite}
@@ -44,9 +45,9 @@ body{
     text-align: center;
 }
 
-.navbarcenter{
-    margin: auto;
-}
+/*.navbarcenter{*/
+/*    margin: auto;*/
+/*}*/
 
 .navbarcolors {
     background: rgba(240,240,240,0.8);
@@ -62,12 +63,8 @@ body{
     border-radius: 20px;
     border: 0.1cm ridge rgba(240, 240, 240, 0.8);
     padding: 5px 30px;
-    margin: 0 16px;
+    margin:5px;
     cursor: pointer;
-}
-
-.container{
-    margin-top: 30px;
 }
 
 .btn-success{
@@ -96,28 +93,48 @@ body{
     background-color: rgba(255,255,255,0.9);
 }
 
+.button-zeleny {
+    background-color: limegreen;
+    border-color: limegreen;
+}
+
+.button-zeleny:hover {
+    background-color: green;
+    border-color: green;
+}
+
 .navbarmenu {
     color: rgb(0,0,0);
     background-color: rgba(240,240,240,0.85);
-    border-style: ridge;
-    border-color: rgba(240,240,240,0.85);
     border-radius: 8px;
+    border: 0.1cm ridge rgba(240, 240, 240, 0.8);
 }
 
-@media screen and ( max-width: 1120px ) {
-    .main{
-        margin: 10px 80px;
-    }
+.loginMargin {
+    margin-left: auto;
 }
 
-@media screen and ( max-width: 920px ) {
+.loginWidth {
+    max-width: 750px;
+    flex: auto;
+}
+
+.form-margin {
+    margin: 60px 0 60px;
+}
+
+p {
+    white-space: pre-line;
+}
+
+@media screen and ( max-width: 1220px ) {
     .main{
         margin: 10px;
     }
 }
 
 @media screen and ( min-width: 768px ) {
-    .col-md-4 {
+    .prispevky {
         max-width: 30%;
         background-color: rgba(255, 255, 255, 0.6);
         margin: 10px;
@@ -126,7 +143,7 @@ body{
 }
 
 @media screen and ( max-width: 768px ) {
-    .col-md-4 {
+    .prispevky {
         background-color: rgba(255, 255, 255, 0.6);
         margin: 10px;
         padding: 5px 15px 15px 15px;

@@ -44,9 +44,10 @@ class PrispevkyController extends AControllerBase
     public function pridaj()
     {
         $article = new Article();
-
-        if (isset($_POST['title'])) {
-            $article->setTitle($_POST['title']);
+        if (isset($_POST['title']) && isset($_POST['text'])) {
+            $str = $_POST['title'];
+            if (strlen(trim($str)) <= 1) { $str = "nazov"; }
+            $article->setTitle($str);
             $article->setText($_POST['text']);
             $article->Save();
             header("Location: ?c=prispevky");
