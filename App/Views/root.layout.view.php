@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--suppress ALL -->
 <html lang="en">
@@ -10,6 +11,20 @@
     <link rel="stylesheet" href="public/pozadie.css">
 </head>
 <body>
+
+<?php
+if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
+<div class="nav-item dropdown" style="margin-left: auto; width: min-content">
+    <a class="navbar-brand nav-link dropdown-toggle loginMenu" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php echo($_SESSION['login']) ?> (<?php echo($_SESSION['rola']) ?>)
+    </a>
+    <div class="dropdown-menu dropdown-menu-color loginMenuHover" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="#">Nastavenia</a>
+        <a class="dropdown-item" href="?c=prihlasenie&a=logout">Odhlásiť sa</a>
+    </div>
+</div>
+<?php }?>
+
 <div class="nadpis">
     Naše lesy
 </div>
@@ -24,6 +39,7 @@
             <a class="dropdown-item" href="#">Rastliny</a>
             <a class="dropdown-item" href="#">Živočíchy</a>
             <a class="dropdown-item" href="#">Národné parky</a>
+            <a class="dropdown-item" href="#">Komentáre</a>
         </div>
     </div>
     <button class="navbar-toggler navbarcolors" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

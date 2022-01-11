@@ -19,7 +19,8 @@ class PrispevkyController extends AControllerBase
         }
 
         return $this->html([
-            'articles' => Article::getAll()
+            'articles' => Article::getAll(),
+            'prihlaseny' => $this->app->getAuth()->isLogged()
         ]);
 
     }
@@ -46,16 +47,14 @@ class PrispevkyController extends AControllerBase
         $article = new Article();
         if (isset($_POST['title']) && isset($_POST['text'])) {
             $str = $_POST['title'];
-            if (strlen(trim($str)) <= 1) { $str = "nazov"; }
+            if (strlen(trim($str)) <= 1) { $str = "Názov"; }
             $article->setTitle($str);
             $article->setText($_POST['text']);
             $article->Save();
             header("Location: ?c=prispevky");
         }
 
-        return $this->html([
-                'articles' => $article
-            ]);
+        return $this->html(['articles' => $article]);
     }
 
 
