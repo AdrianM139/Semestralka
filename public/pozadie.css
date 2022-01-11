@@ -110,9 +110,6 @@ body{
     border: 0.1cm ridge rgba(240, 240, 240, 0.8);
 }
 
-
-
-
 .loginMenu {
     color: rgb(0,0,0);
     background-color: rgba(240,240,240);
@@ -126,8 +123,6 @@ body{
     font-size: 15px;
     margin: 0;
 }
-
-
 
 .loginMargin {
     margin-left: auto;
@@ -144,6 +139,12 @@ body{
 
 p {
     white-space: pre-line;
+}
+
+.komenty {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 10px;
+    padding: 5px 15px;
 }
 
 @media screen and ( max-width: 1220px ) {

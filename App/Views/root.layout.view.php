@@ -39,7 +39,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
             <a class="dropdown-item" href="#">Rastliny</a>
             <a class="dropdown-item" href="#">Živočíchy</a>
             <a class="dropdown-item" href="#">Národné parky</a>
-            <a class="dropdown-item" href="#">Komentáre</a>
+            <a class="dropdown-item" href="?c=komentare">Komentáre</a>
         </div>
     </div>
     <button class="navbar-toggler navbarcolors" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
