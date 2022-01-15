@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Models\Article;
+use App\Models\Setting;
+
 class PrispevkyController extends AControllerBase
 {
 
@@ -19,6 +21,7 @@ class PrispevkyController extends AControllerBase
         }
 
         return $this->html([
+            'settings' => $this->app->getAuth()->isLogged() ? Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0] : null,
             'articles' => Article::getAll(),
             'prihlaseny' => $this->app->getAuth()->isLogged()
         ]);
@@ -38,7 +41,8 @@ class PrispevkyController extends AControllerBase
         }
 
         return $this->html([
-                'articles' => $article
+            'settings' => $this->app->getAuth()->isLogged() ? Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0] : null,
+            'articles' => $article
             ]);
     }
 
@@ -54,7 +58,10 @@ class PrispevkyController extends AControllerBase
             header("Location: ?c=prispevky");
         }
 
-        return $this->html(['articles' => $article]);
+        return $this->html([
+
+            'settings' => $this->app->getAuth()->isLogged() ? Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0] : null,
+            'articles' => $article]);
     }
 
 

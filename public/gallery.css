@@ -11,13 +11,13 @@
 }
 
 .picture-style{
-    border: 0.4cm ridge rgba(200, 255, 0, 0.8);
-    background: rgba(200,255,0,0.8);
+    border: 0.4cm ridge var(--color);
+    background: var(--color);
     display: inline-block;
 }
 
 .picture-style:hover{
-    border-color: rgba(0,255,0,0.8);
+    border-color: var(--colorHover);
     cursor: pointer;
 }
 

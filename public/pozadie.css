@@ -1,5 +1,17 @@
+:root {
+    --color: #c8ff00cc;
+    --colorHover: #159c00cc;
+    --background: url("../img/Lesy/les2.jpg");
+    --header: url("../img/Lesy/zelen.png");
+}
+/*
+  fialova #5f0192cc
+  zlta #cece1fcc
+  modra #29adbdcc
+  cervena #9b0000cc
+ */
 body{
-    background-image: url("../img/Lesy/les2.jpg");
+    background-image: var(--background);
 }
 
 .nadpis{
@@ -8,7 +20,7 @@ body{
     text-align: center;
     text-shadow: 9px 4px 5px #555;
     font-size: 60px;
-    background-image: url("../img/Lesy/zelen.png");
+    background-image: var(--header);
     padding-bottom: 8px;
     margin: 5px auto 10px auto;
     cursor: default;
@@ -40,8 +52,8 @@ body{
 }
 
 .bgstyle{
-    border: 0.5cm ridge rgba(200, 255, 0, 0.8);
-    background: rgba(200,255,0,0.8) !important;
+    border: 0.5cm ridge var(--color);
+    background: var(--color) !important;
     text-align: center;
 }
 
@@ -67,6 +79,11 @@ body{
     cursor: pointer;
 }
 
+.btn:hover {
+    background: var(--colorHover);
+    border-color: var(--colorHover);
+}
+
 .btn-success{
     background-color: yellowgreen;
 }
@@ -87,6 +104,11 @@ body{
     position: absolute;
     bottom: 15px;
     left: 65px;
+}
+
+.btn-outline-danger:hover {
+    background-color: red;
+    border-color: darkred;
 }
 
 .dropdown-menu-color {
@@ -112,10 +134,13 @@ body{
 
 .loginMenu {
     color: rgb(0,0,0);
-    background-color: rgba(240,240,240);
+    background-color: rgb(240,240,240);
     font-size: 15px;
     padding: 0 20px 0 30px;
     cursor: pointer;
+    z-index: 1;
+    position: relative;
+    float: right;
 }
 
 .loginMenuHover {

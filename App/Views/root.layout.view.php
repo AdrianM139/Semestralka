@@ -9,6 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link rel="Stylesheet" href="public/gallery.css">
     <link rel="stylesheet" href="public/pozadie.css">
+    <script src="public/farby.js"></script>
+    <style>
+        <?php
+        /** @var Array $data */
+        /** @var \App\Models\Setting $setting*/
+         $setting = $data['settings'];
+         if ($setting != null) {?>
+        :root {
+            --color: <?= $setting->getFarba() ?>;
+            --colorHover: <?= $setting->getFarbaZobraz() ?>;
+            --background: <?= $setting->getPozadie() ?>;
+            --header: <?= $setting->getHlavicka() ?>;
+        }
+        <?php } ?>
+    </style>
 </head>
 <body>
 
@@ -19,7 +34,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
         <?php echo($_SESSION['login']) ?> (<?php echo($_SESSION['rola']) ?>)
     </a>
     <div class="dropdown-menu dropdown-menu-color loginMenuHover" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Nastavenia</a>
+        <a class="dropdown-item" href="?c=nastavenia">Nastavenia</a>
         <a class="dropdown-item" href="?c=prihlasenie&a=logout">Odhlásiť sa</a>
     </div>
 </div>

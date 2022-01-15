@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Models\Comment;
+use App\Models\Setting;
 
 class KomentareController extends AControllerBase
 {
@@ -28,7 +29,9 @@ class KomentareController extends AControllerBase
             $comment->delete();
             header("Location: ?c=komentare");
         }
-        return $this->html(['comments' => Comment::getAll()]);
+        return $this->html([
+            'settings' => $this->app->getAuth()->isLogged() ? Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0] : null,
+            'comments' => Comment::getAll()]);
     }
 }
 

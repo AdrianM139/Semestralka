@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Core\Responses\Response;
 use App\Core\AControllerBase;
+use App\Models\Setting;
+
 class PrihlasenieController extends AControllerBase
 {
 
@@ -27,6 +29,9 @@ class PrihlasenieController extends AControllerBase
             }
         }
         $data = ($logged === false ? ['message' => 'Zly login alebo heslo!'] : []);
+        if ($this->app->getAuth()->isLogged()) {
+            $data['settings'] = Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
+        }
         return $this->html($data, 'login');
     }
 

@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Responses\Response;
 use App\Core\AControllerBase;
+use App\Models\Setting;
 use App\Models\User;
 
 class RegistraciaController extends AControllerBase
@@ -18,7 +19,7 @@ class RegistraciaController extends AControllerBase
     {
         $formData = $this->app->getRequest()->getPost();
         $user = new User();
-        $data = '';
+        $data = [];
         if(isset($formData['submit'])) {
             if (count(User::getAll('login = ?',[$formData['login']])) > 0) {
                 $data = ['message' => 'login sa už používa'];
@@ -36,6 +37,9 @@ class RegistraciaController extends AControllerBase
                 header("Location: ?c=prihlasenie");
                 return $this->redirect('?c=prihlasenie&a=index');
             }
+        }
+        if ($this->app->getAuth()->isLogged()) {
+            $data['settings'] = Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
         }
         return $this->html($data, 'register');
     }
