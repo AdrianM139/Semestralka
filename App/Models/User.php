@@ -72,7 +72,7 @@ class User extends Model
      */
     public function getEmail()
     {
-        return $this->login;
+        return $this->email;
     }
 
     /**

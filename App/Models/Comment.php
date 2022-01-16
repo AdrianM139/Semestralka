@@ -8,16 +8,19 @@ class Comment extends Model
     protected $id;
     protected ?string $userLogin;
     protected ?string $text;
+    protected ?string $id_prispevok;
 
     /**
      * Article constructor.
      * @param $userLogin
      * @param $text
+     * @param $id_prispevok
      */
-    public function __construct(?string $userLogin = null, ?string $text = null)
+    public function __construct(?string $userLogin = null, ?string $text = null, ?string $id_prispevok = null)
     {
         $this->userLogin = $userLogin;
         $this->text = $text;
+        $this->id_prispevok = $id_prispevok;
     }
 
     /**
@@ -60,9 +63,25 @@ class Comment extends Model
         $this->text = $text;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdPrispevok()
+    {
+        return $this->id_prispevok;
+    }
+
+    /**
+     * @param mixed $id_prispevok
+     */
+    public function setIdPrispevok($id_prispevok)
+    {
+        $this->id_prispevok = $id_prispevok;
+    }
+
     static public function setDbColumns()
     {
-        return ['id', 'userLogin', 'text'];
+        return ['id', 'userLogin', 'text', 'id_prispevok'];
     }
 
     static public function setTableName()

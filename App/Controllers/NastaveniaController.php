@@ -5,7 +5,9 @@ namespace App\Controllers;
 
 
 use App\Core\AControllerBase;
+use App\Models\Comment;
 use App\Models\Setting;
+use App\Models\User;
 
 class NastaveniaController extends AControllerBase
 {
@@ -43,10 +45,33 @@ class NastaveniaController extends AControllerBase
             $setting->save();
         } else if(isset($_GET['zlta'])) {
             $setting->setFarba('#f3ff00cc');
-            $setting->setFarbaZobraz('#cece1fcc');
+            $setting->setFarbaZobraz('#99a000cc');
             $setting->setPozadie('url("../img/Lesy/zlty.jpg")');
             $setting->setHlavicka('url("../img/Lesy/zlten.jpg")');
             $setting->save();
+        }
+        if (isset($_POST['submit'])) {
+            $user = User::getAll('id = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
+            $comments = Comment::getAll('userLogin = ?',[$this->app->getAuth()->getLoggedUser()->getLogin()]);
+            if ($_POST['newLogin'] != null) {
+                $user->setLogin($_POST['newLogin']);
+                $user->save();
+                $_SESSION['login'] = $user->getLogin();
+                foreach ($comments as $comment) {
+                    $comment->setUserLogin($_SESSION['login']);
+                    $comment->save();
+                }
+            }
+            if ($_POST['newPass'] != null && $_POST['newPassRep'] != null && $_POST['newPass'] == $_POST['newPassRep']) {
+                $user->setHeslo($_POST['newPass']);
+                $user->save();
+                $_SESSION['heslo'] = $user->getHeslo();
+            }
+            if ($_POST['newEmail'] != null) {
+                $user->setEmail($_POST['newEmail']);
+                $user->save();
+                $_SESSION['email'] = $user->getEmail();
+            }
         }
 
         $data = ['settings' => Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0]];
@@ -54,7 +79,15 @@ class NastaveniaController extends AControllerBase
     }
 
     public function getFarby() {
+        if (!$this->app->getAuth()->isLogged()) {
+            $data = ['err' => 'Používateľ nie je prihlásený'];
+            return $this->json($data);
+        }
         $setting = Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()]);
         return $this->json($setting[0]);
+    }
+
+    public function authorize($action){
+        return $this->app->getAuth()->isLogged();
     }
 }

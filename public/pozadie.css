@@ -57,14 +57,24 @@ body{
     text-align: center;
 }
 
-/*.navbarcenter{*/
-/*    margin: auto;*/
-/*}*/
-
 .navbarcolors {
     background: rgba(240,240,240,0.8);
     color: darkslategray;
     border-color: rgba(240, 240, 240, 0.8);
+}
+
+.colorChange {
+    width: 40px;
+    height: 40px;
+    border: ridge;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
+}
+
+.colorDiv {
+    width: min-content;
+    margin: auto;
 }
 
 .btnstyle {
@@ -82,6 +92,7 @@ body{
 .btn:hover {
     background: var(--colorHover);
     border-color: var(--colorHover);
+    color: white;
 }
 
 .btn-success{
@@ -132,15 +143,19 @@ body{
     border: 0.1cm ridge rgba(240, 240, 240, 0.8);
 }
 
+.loginMenuMargin {
+    margin-left: auto;
+    width: min-content;
+    margin-bottom: -28px;
+    margin-top: 5px;
+}
+
 .loginMenu {
     color: rgb(0,0,0);
     background-color: rgb(240,240,240);
     font-size: 15px;
     padding: 0 20px 0 30px;
     cursor: pointer;
-    z-index: 1;
-    position: relative;
-    float: right;
 }
 
 .loginMenuHover {
@@ -172,6 +187,19 @@ p {
     padding: 5px 15px;
 }
 
+.komentyPrispevok {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 15px;
+}
+
+.prispevok {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 10px;
+    padding: 5px 15px 15px 15px;
+}
+
 @media screen and ( max-width: 1220px ) {
     .main{
         margin: 10px;
@@ -181,7 +209,7 @@ p {
 @media screen and ( min-width: 768px ) {
     .prispevky {
         max-width: 30%;
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.8);
         margin: 10px;
         padding: 5px 15px 15px 15px;
     }
@@ -189,7 +217,7 @@ p {
 
 @media screen and ( max-width: 768px ) {
     .prispevky {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.8);
         margin: 10px;
         padding: 5px 15px 15px 15px;
     }

@@ -1,16 +1,18 @@
 class Tema {
     constructor() {
-        console.log("constructor");
+        //console.log("constructor");
         this.reload();
         setInterval(() => this.reload(), 3000);
     }
 
     async getNastavenia(){
         try {
-            console.log("getNastavenia");
+            //console.log("getNastavenia");
             let response = await fetch('?c=nastavenia&a=getFarby');
 
             let data = await response.json();
+
+            if (data.err) return;
 
             jQuery.each(data, function(stlpec, hodnota) {
                 if(hodnota !== "" && stlpec != "id" && stlpec != "id_user"){
@@ -39,5 +41,5 @@ class Tema {
 
 document.addEventListener('DOMContentLoaded',() =>{
     var tema = new Tema();
-    console.log("DOMContentLoaded");
+    //console.log("DOMContentLoaded");
 });

@@ -39,6 +39,7 @@
                     </svg>
                 </a>
                 <?php }?>
+                <a class="btn komentyPrispevok" href="?c=komentare&id=<?=$article->getId() ?>">Komentáre</a>
             </div>
 
         <?php } ?>

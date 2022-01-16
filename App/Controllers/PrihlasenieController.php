@@ -39,4 +39,24 @@ class PrihlasenieController extends AControllerBase
         $this->app->getAuth()->logout();
         return $this->html(null, 'logout');
     }
+
+    public function testLogin() {
+        $formData = $this->app->getRequest()->getPost();
+        $logged = null;
+
+        if (isset($formData['name']) && isset($formData['password'])) {
+            $logged = $this->app->getAuth()->login($formData['name'], $formData['password']);
+            $_SESSION['name'] = $formData['name'];
+            $_SESSION['password'] = $formData['password'];
+            if ($logged) {
+                $data = ['err' => ''];
+            } else {
+                $data = ['err' => 'Nesprávne meno alebo heslo'];
+            }
+        } else {
+            $data = ['err' => 'Meno alebo heslo nebolo zadané'];
+        }
+
+        return $this->json($data);
+    }
 }

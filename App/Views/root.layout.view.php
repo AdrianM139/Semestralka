@@ -10,6 +10,7 @@
     <link rel="Stylesheet" href="public/gallery.css">
     <link rel="stylesheet" href="public/pozadie.css">
     <script src="public/farby.js"></script>
+    <script src="public/prihlasenie.js"></script>
     <style>
         <?php
         /** @var Array $data */
@@ -29,11 +30,15 @@
 
 <?php
 if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
-<div class="nav-item dropdown" style="margin-left: auto; width: min-content">
+<div class="nav-item dropdown loginMenuMargin">
     <a class="navbar-brand nav-link dropdown-toggle loginMenu" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <?php echo($_SESSION['login']) ?> (<?php echo($_SESSION['rola']) ?>)
     </a>
     <div class="dropdown-menu dropdown-menu-color loginMenuHover" aria-labelledby="navbarDropdownMenuLink">
+        <?php
+        if ($_SESSION['rola'] == "admin"){?>
+            <a class="dropdown-item" href="?c=pouzivatelia">Použivatelia</a>
+        <?php }?>
         <a class="dropdown-item" href="?c=nastavenia">Nastavenia</a>
         <a class="dropdown-item" href="?c=prihlasenie&a=logout">Odhlásiť sa</a>
     </div>

@@ -19,6 +19,7 @@ class RegistraciaController extends AControllerBase
     {
         $formData = $this->app->getRequest()->getPost();
         $user = new User();
+        $setting = new Setting();
         $data = [];
         if(isset($formData['submit'])) {
             if (count(User::getAll('login = ?',[$formData['login']])) > 0) {
@@ -34,6 +35,13 @@ class RegistraciaController extends AControllerBase
                 $user->setEmail($formData['email']);
                 $user->setRola();
                 $user->save();
+                $userId = User::getAll('login = ?',[$formData['login']])[0];
+                $setting->setIdUser($userId->getId());
+                $setting->setFarba('#c8ff00cc');
+                $setting->setFarbaZobraz('#159c00cc');
+                $setting->setPozadie('url("../img/Lesy/les2.jpg")');
+                $setting->setHlavicka('url("../img/Lesy/zelen.png")');
+                $setting->save();
                 header("Location: ?c=prihlasenie");
                 return $this->redirect('?c=prihlasenie&a=index');
             }
