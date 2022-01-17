@@ -49,7 +49,6 @@ class DBAuthenticator extends AAuthenticator
 
     function logout()
     {
-        // TODO: Implement logout() method.
         if(isset($_SESSION['user'])){
             unset($_SESSION['user']);
             session_destroy();
