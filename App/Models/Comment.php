@@ -6,19 +6,18 @@ use App\Core\Model;
 class Comment extends Model
 {
     protected $id;
-    protected ?string $userLogin;
+    protected ?string $id_user;
     protected ?string $text;
     protected ?string $id_prispevok;
 
     /**
      * Article constructor.
-     * @param $userLogin
+     * @param $idUser
      * @param $text
      * @param $id_prispevok
      */
-    public function __construct(?string $userLogin = null, ?string $text = null, ?string $id_prispevok = null)
+    public function __construct(?string $text = null, ?string $id_prispevok = null)
     {
-        $this->userLogin = $userLogin;
         $this->text = $text;
         $this->id_prispevok = $id_prispevok;
     }
@@ -34,17 +33,17 @@ class Comment extends Model
     /**
      * @return mixed
      */
-    public function getUserLogin()
+    public function getIdUser()
     {
-        return $this->userLogin;
+        return $this->id_user;
     }
 
     /**
-     * @param mixed $userLogin
+     * @param mixed $id_user
      */
-    public function setUserLogin($userLogin)
+    public function setIdUser($id_user)
     {
-        $this->userLogin = $userLogin;
+        $this->id_user = $id_user;
     }
 
     /**
@@ -81,7 +80,7 @@ class Comment extends Model
 
     static public function setDbColumns()
     {
-        return ['id', 'userLogin', 'text', 'id_prispevok'];
+        return ['id', 'id_user', 'text', 'id_prispevok'];
     }
 
     static public function setTableName()

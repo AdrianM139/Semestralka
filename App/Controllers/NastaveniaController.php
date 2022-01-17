@@ -18,7 +18,7 @@ class NastaveniaController extends AControllerBase
     {
         $setting = Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
 
-        $formData = $this->app->getRequest()->getPost();
+        $data = [];
         if(isset($_GET['zelena'])){
             $setting->setFarba('#c8ff00cc');
             $setting->setFarbaZobraz('#159c00cc');
@@ -52,29 +52,42 @@ class NastaveniaController extends AControllerBase
         }
         if (isset($_POST['submit'])) {
             $user = User::getAll('id = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
-            $comments = Comment::getAll('userLogin = ?',[$this->app->getAuth()->getLoggedUser()->getLogin()]);
-            if ($_POST['newLogin'] != null) {
+            $comments = Comment::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()]);
+            if ($_POST['newLogin'] == $user->getLogin()){
+                $data['messageLogin'] = 'Toto je tvoj aktuálny login, zadaj iný';
+            } else if (count(User::getAll('login = ?',[$_POST['newLogin']])) > 0){
+                $data['messageLogin'] = 'Tento login sa už používa';
+            } else if ($_POST['newLogin'] != null && strlen($_POST['newLogin']) < 3 || strlen($_POST['newLogin']) > 15) {
+                $data = ['messageLogin' => 'Login musí mať 3 až 15 znakov'];
+            } else if ($_POST['newLogin'] != null) {
                 $user->setLogin($_POST['newLogin']);
                 $user->save();
                 $_SESSION['login'] = $user->getLogin();
                 foreach ($comments as $comment) {
-                    $comment->setUserLogin($_SESSION['login']);
+                    $comment->setIdUser($_SESSION['id']);
                     $comment->save();
                 }
             }
-            if ($_POST['newPass'] != null && $_POST['newPassRep'] != null && $_POST['newPass'] == $_POST['newPassRep']) {
-                $user->setHeslo($_POST['newPass']);
+            if ($_POST['newPass'] != null && strlen($_POST['newPass']) < 3 || strlen($_POST['newPass']) > 15) {
+                $data = ['messagePass' => 'Heslo musí mať aspoň 3 až 15 znakov'];
+            } else if ($_POST['newPassRep'] != null && strlen($_POST['newPassRep']) < 3 || strlen($_POST['newPassRep']) > 15) {
+                $data = ['messagePass' => 'Heslo musí mať aspoň 3 až 15 znakov'];
+            } else if ($_POST['newPass'] != $_POST['newPassRep']) {
+                $data['messagePass'] = 'Heslá sa nezhodujú';
+            } else if ($_POST['newPass'] != null && $_POST['newPassRep'] != null && $_POST['newPass'] == $_POST['newPassRep']) {
+                $newPass = password_hash($_POST['newPass'], PASSWORD_DEFAULT);
+                $user->setHeslo($newPass);
                 $user->save();
-                $_SESSION['heslo'] = $user->getHeslo();
             }
-            if ($_POST['newEmail'] != null) {
+            if (count(User::getAll('email = ?',[$_POST['newEmail']])) > 0){
+                $data['messageEmail'] = 'Tento email sa už používa';
+            } else if ($_POST['newEmail'] != null) {
                 $user->setEmail($_POST['newEmail']);
                 $user->save();
-                $_SESSION['email'] = $user->getEmail();
             }
         }
 
-        $data = ['settings' => Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0]];
+        $data['settings'] = Setting::getAll('id_user = ?',[$this->app->getAuth()->getLoggedUser()->getId()])[0];
         return $this->html($data);
     }
 

@@ -8,7 +8,7 @@
                         <div class="card-header">Prihláste sa</div>
                         <div class="card-body">
                             <div>
-                                Odhlásili ste sa. Chcete sa opäť <a href="?c=prihlasenie&a=login"> prihlásiť? </a>
+                                Odhlásili ste sa. Chcete sa opäť <a href="?c=prihlasenie"> prihlásiť? </a>
                             </div>
                         </div>
                     </div>

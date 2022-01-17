@@ -13,8 +13,11 @@ $user = $data['users'];
         <div class="komenty">
             <b>Login:</b> <?=$user->getLogin() ?> &emsp;&emsp; <b>Email:</b> <?=$user->getEmail() ?> &emsp;&emsp; <b>Rola:</b> <?=$user->getRola() ?>
             <div>
-                <a style="color: red" href="?c=pouzivatelia&zmaz=true&id=<?=$user->getId() ?>">Zmazať</a>
-                <a href="?c=pouzivatelia&zmen=true&id=<?=$user->getId() ?>">Zmeň rolu</a>
+                <?php
+                if ($_SESSION['user'] != $user){ ?>
+                    <a style="color: red" href="?c=pouzivatelia&zmaz=true&id=<?=$user->getId() ?>">Zmazať</a>
+                    <a href="?c=pouzivatelia&zmen=true&id=<?=$user->getId() ?>">Zmeň rolu</a>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>

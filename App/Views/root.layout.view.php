@@ -15,8 +15,8 @@
         <?php
         /** @var Array $data */
         /** @var \App\Models\Setting $setting*/
-         $setting = $data['settings'];
-         if ($setting != null) {?>
+         if (isset($data['settings'])) {
+             $setting = $data['settings'];?>
         :root {
             --color: <?= $setting->getFarba() ?>;
             --colorHover: <?= $setting->getFarbaZobraz() ?>;
@@ -31,7 +31,7 @@
 <?php
 if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
 <div class="nav-item dropdown loginMenuMargin">
-    <a class="navbar-brand nav-link dropdown-toggle loginMenu" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="navbar-brand nav-link dropdown-toggle loginMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
         <?php echo($_SESSION['login']) ?> (<?php echo($_SESSION['rola']) ?>)
     </a>
     <div class="dropdown-menu dropdown-menu-color loginMenuHover" aria-labelledby="navbarDropdownMenuLink">
@@ -59,7 +59,6 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null){?>
             <a class="dropdown-item" href="#">Rastliny</a>
             <a class="dropdown-item" href="#">Živočíchy</a>
             <a class="dropdown-item" href="#">Národné parky</a>
-            <a class="dropdown-item" href="?c=komentare">Komentáre</a>
         </div>
     </div>
     <button class="navbar-toggler navbarcolors" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

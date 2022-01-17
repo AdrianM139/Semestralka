@@ -24,6 +24,7 @@ class DBAuthenticator extends AAuthenticator
             $foundUser = $foundUser[0];
             if(password_verify($pass,$foundUser->getHeslo())){
                 $_SESSION['user'] = $foundUser;
+                $_SESSION['id'] = $foundUser->getId();
                 $_SESSION['login'] = $foundUser->getLogin();
                 $_SESSION['rola'] = $foundUser->getRola();
                 return true;

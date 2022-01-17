@@ -11,8 +11,8 @@ class Prihlasenie {
 
         console.log(login+" "+password);
 
-        if(!login) document.getElementById("err_login").innerHTML = "prosím zadajte meno";
         if(!password) document.getElementById("err_login").innerHTML = "prosím zadajte heslo";
+        if(!login) document.getElementById("err_login").innerHTML = "prosím zadajte meno";
 
         if(!login || !password) return;
 
@@ -20,7 +20,7 @@ class Prihlasenie {
         formData.append("name", login);
         formData.append("password", password);
 
-        var response = await fetch('?c=prihlasenie&a=testLogin',{
+        var response = await fetch('?c=prihlasenie&a=login',{
             method: 'POST',
             body: formData
         });

@@ -8,9 +8,9 @@
             <div class="col-md-8 loginWidth">
                 <div class="card">
                     <div class="card-header">Registrácia</div>
-                    <div class="card-body">
+                    <div class="card-body" style="text-align: center">
                         <div>
-                            <center style="margin-bottom: 10px; color: red"><?= @$data['message'] ?></center>
+                            <a style="margin-bottom: 10px; color: red"><?= @$data['message'] ?></a>
                         </div>
                         <form name="my-form" method="post" action="?c=registracia">
                             <div class="form-group row">

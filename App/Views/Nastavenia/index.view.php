@@ -1,4 +1,5 @@
-
+<?php /** @var Array $data */
+?>
 <div class="main">
     <h1>
         Nastavenia:
@@ -36,24 +37,27 @@
     </h4>
     <form method="post">
         <div class="form-group">
+            <div style="margin-bottom: 10px; color: red"><?= @$data['messageLogin'] ?></div>
             <a>Zadaj nové meno:</a>
-            <label for="text">
+            <label>
                 <input type="text" class="form-control" name="newLogin">
             </label>
             <br>
+            <div style="margin-bottom: 10px; color: red"><?= @$data['messagePass'] ?></div>
             <a>Zadaj nové heslo:</a>
-            <label for="text">
-                <input type="text" class="form-control" name="newPass">
+            <label>
+                <input type="password" class="form-control" name="newPass">
             </label>
             <br>
             <a>Zopakuj nové heslo:</a>
-            <label for="text">
-                <input type="text" class="form-control" name="newPassRep">
+            <label>
+                <input type="password" class="form-control" name="newPassRep">
             </label>
             <br>
+            <div style="margin-bottom: 10px; color: red"><?= @$data['messageEmail'] ?></div>
             <a>Zadaj nový email:</a>
-            <label for="text">
-                <input type="text" class="form-control" name="newEmail">
+            <label>
+                <input type="email" class="form-control" name="newEmail">
             </label>
             <br>
             <label>

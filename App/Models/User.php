@@ -94,9 +94,9 @@ class User extends Model
     /**
      * @param mixed $rola
      */
-    public function setRola(): void
+    public function setRola($rola): void
     {
-        $this->rola = 'pouzivatel';
+        $this->rola = $rola;
     }
 
     static public function setDbColumns()

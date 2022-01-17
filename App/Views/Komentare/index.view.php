@@ -1,6 +1,8 @@
 <?php
 /** @var Array $data */
 //$comment = $data['comments'];
+use App\Models\User;
+
 $article = $data['article'];
 ?>
 
@@ -23,8 +25,10 @@ $article = $data['article'];
                 <input class="btn btn-success" type="submit" name="submit" value="Pridať koment">
             </label>
             <div class="form-group">
-                <label for="text">
+                <label>
                     <input type="text" class="form-control" name="text" required>
+                </label>
+                <label>
                     <input type="text" class="form-control" name="idPrispevok" value="<?=$article->getId() ?>" style="display: none">
                 </label>
             </div>
@@ -34,10 +38,13 @@ $article = $data['article'];
         foreach ($data['comments'] as $comment) {
             ?>
             <div class="komenty">
-                <b><?=$comment->getUserLogin() ?>:</b>  <?=$comment->getText() ?>
+                <?php
+                $user = User::getAll('id = ?',[$comment->getIdUser()])[0];
+                ?>
+                <b><?=$user->getLogin() ?>:</b>  <?=$comment->getText() ?>
                 <?php
                 if(isset($_SESSION['user']) && $_SESSION['user'] != null){
-                    if ($comment->getUserLogin() == $_SESSION['login'] || $_SESSION['rola'] == 'admin'){?>
+                    if ($comment->getIdUser() == $_SESSION['id'] || $_SESSION['rola'] == 'admin'){?>
                     <div>
                         <a style="color: red" href="?c=komentare&zmaz=true&idZmaz=<?=$comment->getId() ?>&idPrispevok=<?=$article->getId() ?>">Zmazať</a>
                     </div>

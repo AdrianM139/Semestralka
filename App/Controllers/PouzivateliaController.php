@@ -19,11 +19,24 @@ class PouzivateliaController extends AControllerBase
         if (isset($_GET['zmaz'])) {
             $id = $_GET['id'];
             $user = User::getOne($id);
-            $comment = Comment::getAll('userLogin = ?',[$user->getLogin()])[0];
-            $comment->delete();
+            $comments = Comment::getAll('id_user = ?',[$id]);
+            foreach ($comments as $comment) {
+                $comment->delete();
+            }
             $setting = Setting::getAll('id_user = ?',[$id])[0];
             $setting->delete();
             $user->delete();
+            header("Location: ?c=pouzivatelia");
+        }
+        if (isset($_GET['zmen'])) {
+            $id = $_GET['id'];
+            $user = User::getOne($id);
+            if ($user->getRola() == 'admin') {
+                $user->setRola('pouzivatel');
+            } else {
+                $user->setRola('admin');
+            }
+            $user->save();
             header("Location: ?c=pouzivatelia");
         }
 

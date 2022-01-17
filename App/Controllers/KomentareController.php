@@ -8,6 +8,7 @@ use App\Core\AControllerBase;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Setting;
+use App\Models\User;
 
 class KomentareController extends AControllerBase
 {
@@ -27,7 +28,7 @@ class KomentareController extends AControllerBase
         }
         $comment = new Comment();
         if (isset($_POST['submit'])) {
-            $comment->setUserLogin($_SESSION['login']);
+            $comment->setIdUser($_SESSION['id']);
             $comment->setText($_POST['text']);
             $comment->setIdPrispevok($id);
             $comment->Save();
